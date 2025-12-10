@@ -54,11 +54,15 @@
     <!-- Small interactive code -->
     <button 
         onclick="sayHello()" 
+        onmouseover="this.style.backgroundColor='#0f4c81'"
+        onmouseout="this.style.backgroundColor='#1a73e8'"
         style="padding: 10px 16px; font-size: 16px; background-color: #1a73e8; color: white; border: none; border-radius: 4px; cursor: pointer;">
         Click Me
     </button>
 
     <script>
+        console.log("Welcome Suhaani! Page loaded successfully.");
+
         function sayHello() {
             alert("Hello Suhaani! This is a small JavaScript interaction 😊");
         }
