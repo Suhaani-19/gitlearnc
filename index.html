@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Page | Suhaani Garg</title>
+
+    <!-- Favicon (optional, add favicon.png in same folder) -->
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 
 <body style="
@@ -91,6 +94,7 @@
         <br><br>
 
         <button
+            aria-label="Greet the user"
             onclick="sayHello()"
             onmouseover="this.style.backgroundColor='#0f4c81'"
             onmouseout="this.style.backgroundColor='#1a73e8'"
@@ -107,6 +111,13 @@
             Click Me !
         </button>
 
+        <!-- Footer -->
+        <hr style="margin:20px 0; border:none; border-top:1px solid #eee;">
+
+        <p style="font-size:13px; color:#999; text-align:center;">
+            © 2025 Suhaani Garg — Built with HTML, CSS & JavaScript
+        </p>
+
     </div>
 
     <script>
@@ -118,11 +129,11 @@
 
         console.log("UI loaded cleanly.");
 
-        /* ✅ added for commit */
+        /* ✅ build info */
         const buildVersion = "1.0.1";
         console.log("Build version:", buildVersion);
 
-        /* ✅ two more added lines */
+        /* ✅ author info */
         const appAuthor = "Suhaani Garg";
         console.log("Author:", appAuthor);
     </script>
