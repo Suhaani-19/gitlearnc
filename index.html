@@ -1,45 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page | Suhaani Garg</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Welcome | Suhaani Garg</title>
 
     <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: linear-gradient(135deg, #f9fbff, #eef3ff);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        h1.main-title {
+            color: #1a73e8;
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            color: #0f4c81;
+            font-size: 30px;
+            margin: 12px 0;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-top: 12px;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            h1.main-title {
+                font-size: 28px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 
-<body style="
-    font-family: Arial, sans-serif;
-    padding: 25px;
-    background-color: #f9fbff;
-">
+<body>
 
-    <div style="
-        max-width: 900px;
-        margin: auto;
-        background-color: #ffffff;
-        padding: 25px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    ">
+    <main class="container">
+        <h1 class="main-title">Hello Suhaani 👋</h1>
 
-        <h1 style="color:#1a73e8; font-size:36px; margin-bottom:12px;">
-            Hello Suhaani, how are you?
-        </h1>
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
 
-        <h1 style="color:#0f4c81; font-size:32px; margin:10px 0;">
-            Heading 1
-        </h1>
-
-        <h2 style="color:#333; font-size:28px; margin:8px 0;">
-            Heading 2
-        </h2>
-
-        <p style="color:#555; font-size:18px;">
-            This is a simple starter page hosted on GitHub.
+        <p>
+            This is a clean, modern starter page hosted on GitHub.
+            You can easily extend this into a personal portfolio, blog,
+            or project showcase.
         </p>
 
-    </div>
+        <footer>
+            © 2026 • Built with ❤️ by Suhaani Garg
+        </footer>
+    </main>
 
 </body>
 </html>
