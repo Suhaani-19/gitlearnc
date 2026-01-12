@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Welcome page for Suhaani Garg - portfolio starter page." />
+  <meta name="theme-color" content="#1a73e8" />
 
   <title>Welcome | Suhaani Garg</title>
   <link rel="icon" type="image/png" href="favicon.png" />
@@ -11,237 +12,382 @@
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
-    :root{
-      --bg1:#f9fbff;
-      --bg2:#eef3ff;
+    :root {
+      --bg1: #f9fbff;
+      --bg2: #eef3ff;
 
-      --primary:#1a73e8;
-      --primary-dark:#0f4c81;
+      --primary: #1a73e8;
+      --primary-dark: #0f4c81;
 
-      --text:#333;
-      --muted:#666;
-      --subtle:#888;
+      --text: #222;
+      --muted: #5d6470;
+      --subtle: #8a91a0;
 
-      --card:#ffffff;
-      --border:rgba(0,0,0,0.08);
-      --shadow: 0 12px 30px rgba(0,0,0,0.10);
+      --card: rgba(255, 255, 255, 0.85);
+      --border: rgba(0, 0, 0, 0.08);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
 
-      --radius:16px;
-      --container-width: 920px;
+      --radius: 18px;
+      --container-width: 960px;
     }
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
+    /* Dark mode (auto) */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg1: #070b14;
+        --bg2: #0b1224;
+
+        --text: #eaf0ff;
+        --muted: rgba(234, 240, 255, 0.75);
+        --subtle: rgba(234, 240, 255, 0.45);
+
+        --card: rgba(10, 15, 30, 0.72);
+        --border: rgba(255, 255, 255, 0.10);
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+      }
     }
 
-    body{
-      font-family:"Poppins", Arial, sans-serif;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      background: radial-gradient(circle at top left, rgba(26,115,232,0.18), transparent 45%),
-                  radial-gradient(circle at bottom right, rgba(15,76,129,0.18), transparent 45%),
-                  linear-gradient(135deg, var(--bg1), var(--bg2));
-      color:var(--text);
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+
+      background:
+        radial-gradient(circle at top left, rgba(26,115,232,0.18), transparent 45%),
+        radial-gradient(circle at bottom right, rgba(15,76,129,0.18), transparent 45%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+
+      color: var(--text);
     }
 
     /* soft background blobs */
     body::before,
-    body::after{
-      content:"";
-      position:fixed;
-      width:320px;
-      height:320px;
-      border-radius:50%;
-      filter: blur(60px);
-      opacity:0.25;
-      z-index:-1;
-    }
-    body::before{
-      background: var(--primary);
-      top:-70px;
-      left:-70px;
-    }
-    body::after{
-      background: var(--primary-dark);
-      bottom:-80px;
-      right:-80px;
+    body::after {
+      content: "";
+      position: fixed;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.22;
+      z-index: -1;
+      pointer-events: none;
     }
 
-    .container{
-      width:100%;
+    body::before {
+      background: var(--primary);
+      top: -70px;
+      left: -70px;
+    }
+
+    body::after {
+      background: var(--primary-dark);
+      bottom: -80px;
+      right: -80px;
+    }
+
+    /* Accessibility: skip link */
+    .skip-link {
+      position: absolute;
+      top: -50px;
+      left: 10px;
+      padding: 10px 14px;
+      background: var(--primary);
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      z-index: 999;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 10px;
+      outline: none;
+    }
+
+    main.container {
+      width: 100%;
       max-width: var(--container-width);
-      background:rgba(255,255,255,0.85);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 40px;
-      position:relative;
-      overflow:hidden;
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
 
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
 
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transform: translateY(10px);
+      opacity: 0;
+      animation: intro 0.75s ease forwards;
     }
 
-    .container:hover{
-      transform: translateY(-4px);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.14);
+    @keyframes intro {
+      to { transform: translateY(0); opacity: 1; }
     }
 
-    header{
-      margin-bottom: 22px;
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 26px;
     }
 
-    .main-title{
-      font-size: 38px;
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .main-title {
+      font-size: 40px;
       font-weight: 700;
-      letter-spacing: -0.5px;
-      color: var(--primary);
-      line-height: 1.2;
+      letter-spacing: -0.7px;
+      line-height: 1.1;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .subtitle{
-      margin-top: 10px;
-      font-size: 18px;
+    .subtitle {
+      font-size: 17px;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.7;
       max-width: 70ch;
     }
 
-    .divider{
+    nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 12px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(26, 115, 232, 0.10);
+      transform: translateY(-1px);
+    }
+
+    .divider {
       height: 1px;
-      background: rgba(0,0,0,0.08);
+      background: rgba(0, 0, 0, 0.08);
       margin: 26px 0;
     }
 
-    h2{
+    @media (prefers-color-scheme: dark) {
+      .divider {
+        background: rgba(255, 255, 255, 0.10);
+      }
+    }
+
+    h2 {
       font-size: 22px;
-      font-weight: 600;
-      color: var(--primary-dark);
+      font-weight: 700;
+      color: var(--text);
       margin-bottom: 10px;
     }
 
-    p{
-      font-size: 16.5px;
+    p {
+      font-size: 16px;
       color: var(--muted);
       line-height: 1.75;
     }
 
-    .actions{
-      display:flex;
+    .actions {
+      display: flex;
       gap: 12px;
       flex-wrap: wrap;
       margin-top: 22px;
     }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
 
       padding: 12px 16px;
-      border-radius: 12px;
-      border:1px solid rgba(26,115,232,0.25);
+      border-radius: 14px;
 
       font-size: 15px;
-      font-weight: 600;
-      text-decoration:none;
+      font-weight: 700;
+      text-decoration: none;
 
+      border: 1px solid rgba(26, 115, 232, 0.26);
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
       outline: none;
+      user-select: none;
+      cursor: pointer;
     }
 
-    .btn-primary{
-      background: var(--primary);
+    .btn-primary {
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
       color: #fff;
-      box-shadow: 0 10px 25px rgba(26,115,232,0.25);
+      box-shadow: 0 10px 25px rgba(26, 115, 232, 0.25);
     }
 
-    .btn-primary:hover{
+    .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 14px 32px rgba(26,115,232,0.32);
     }
 
-    .btn-outline{
-      background: rgba(255,255,255,0.6);
-      color: var(--primary-dark);
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.55);
+      color: var(--text);
     }
 
-    .btn-outline:hover{
+    @media (prefers-color-scheme: dark) {
+      .btn-outline {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+      }
+    }
+
+    .btn-outline:hover {
       transform: translateY(-2px);
-      background: rgba(26,115,232,0.07);
+      background: rgba(26, 115, 232, 0.10);
     }
 
-    .btn:focus-visible{
-      box-shadow: 0 0 0 4px rgba(26,115,232,0.25);
+    .btn:focus-visible,
+    .nav-link:focus-visible {
+      box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.28);
+      border-radius: 14px;
+      outline: none;
     }
 
-    footer{
-      margin-top: 32px;
+    footer {
+      margin-top: 34px;
       font-size: 13px;
       color: var(--subtle);
-      text-align:center;
+      text-align: center;
     }
 
-    @media (max-width: 600px){
-      .container{
-        padding: 26px;
+    @media (max-width: 650px) {
+      main.container {
+        padding: 28px;
       }
-      .main-title{
+
+      .main-title {
         font-size: 28px;
       }
-      .subtitle{
-        font-size: 15px;
+
+      .subtitle {
+        font-size: 14.5px;
       }
-      h2{
-        font-size: 18px;
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="container">
-    <header>
-      <h1 class="main-title">Hello Suhaani 👋</h1>
-      <p class="subtitle">
-        Welcome to your clean and modern GitHub-hosted starter page.
-        You can turn this into a portfolio, blog, or project showcase anytime.
-      </p>
-    </header>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <main class="container" id="content">
+    <div class="topbar">
+      <div class="brand">
+        <h1 class="main-title">Hello Suhaani 👋</h1>
+        <p class="subtitle">
+          Welcome to your clean and modern GitHub-hosted starter page.
+          You can turn this into a portfolio, blog, or project showcase anytime.
+        </p>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+    </div>
 
     <div class="divider"></div>
 
     <section aria-label="About section">
       <h2>✨ Build Something Amazing</h2>
       <p>
-        This starter page is optimized for a smooth premium look:
-        responsive layout, clean typography, soft UI effects, and structured code.
-        Now you can simply add Projects, About Me, Skills, and Contact.
+        This starter page is optimized for a smooth premium look: responsive layout,
+        clean typography, soft UI effects, and structured code.
+        Now you can easily expand it into a full portfolio with Projects, Skills,
+        and Contact.
       </p>
 
       <div class="actions">
-        <a class="btn btn-primary" href="#" aria-label="View portfolio">
-          View Portfolio →
+        <a class="btn btn-primary" href="#projects" aria-label="View projects">
+          View Projects →
         </a>
-        <a class="btn btn-outline" href="#" aria-label="Visit GitHub profile">
+        <a class="btn btn-outline" href="https://github.com/" target="_blank" rel="noopener noreferrer">
           GitHub
         </a>
-        <a class="btn btn-outline" href="#" aria-label="Contact">
+        <a class="btn btn-outline" href="#contact">
           Contact
         </a>
       </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Optional sections (you can fill later) -->
+    <section id="projects" aria-label="Projects section">
+      <h2>🚀 Projects</h2>
+      <p>
+        Add your best projects here. You can show: title, tech stack, a short description,
+        and buttons for Live Demo + GitHub Repo.
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="skills" aria-label="Skills section">
+      <h2>🧠 Skills</h2>
+      <p>
+        List your core skills: HTML, CSS, JavaScript, React, DSA, etc.
+        (We can turn this into premium badges.)
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="contact" aria-label="Contact section">
+      <h2>📩 Contact</h2>
+      <p>
+        Add your email, LinkedIn, Instagram, or a simple contact form.
+      </p>
     </section>
 
     <footer>
